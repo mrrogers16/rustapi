@@ -15,7 +15,7 @@ struct User {
     email: String,
 }
 
-const DB_URL: &str = env!("DATABASE_URL");
+const DB_URL: &str = !env("DATABASE_URL");
 
 const OK_RESPONSE: &str = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n";
 const NOT_FOUND: &str = "HTTP/1.1 404 NOT FOUND\r\n\r\n";
@@ -37,7 +37,7 @@ fn set_database() -> Result<(), PostgresError> {
 }
 
 fn get_id(request: &str) -> &str {
-    request.split("/").nth(2).unwrap_or_default().split_whitespace().next().unwrap_or_default();
+    request.split("/").nth(2).unwrap_or_default().split_whitespace().next().unwrap_or_default()
 }
 fn main(){
     // Set database
